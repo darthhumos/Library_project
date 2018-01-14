@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Library</string>
+    <string name="About">Free and add-free,My Library allows you to store your personal library and to perform a quick search within it.\n\n
+        My Library allows you to :\n\n
+        - search books from out database\n
+        - reserve books at your desired location\n
+        - view your profile\n
+        - rate books and authers\n
+        - Sort your library by titles, names, categories, read / unread, ... \n
+        - send message to your librarian\n
+        - look at your loan history\n
+        - add comments to books</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="forgot_label">Forgot Password? <u>click here</u></string>
+    <string name="admin_label">if you are an administrator <u>click here</u></string>
+    <string name="admin_prompt">Choose admin</string>
+    <string-array name="Admins">
+        <item>Tomer Peled</item>
+        <item>Dovi Samuel</item>
+        <item>Michael Sion</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
