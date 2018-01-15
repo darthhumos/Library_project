@@ -23,3 +23,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.tmd.library.Message
+-keep class com.tmd.library.Book
+-keep class com.tmd.library.User
+
+-keep class*{
+    public private *;
+    }
