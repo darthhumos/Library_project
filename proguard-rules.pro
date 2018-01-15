@@ -24,9 +24,14 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep class com.tmd.library.Message
--keep class com.tmd.library.Book
--keep class com.tmd.library.User
+-keepnames class com.tmd.library.Book
+-keepnames class com.tmd.library.User
+-keepnames public class com.tmd.library.Message
 
--keep class*{
-    public private *;
-    }
+-keep class com.tmd.library.BookView{
+
+  public void StringToBitMap(java.lang.string);
+}
+-keep class com.tmd.library.Book_Picture{
+         private String Pic;
+}
