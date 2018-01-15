@@ -15,7 +15,13 @@ public class Message {
     private String Key;
     public Message()
     {
-
+        this.from = "from";
+        this.to = "temp1";
+        this.subject = "tempi temp";
+        this.message = "Temp message";
+        this.answer = "the admin will get back to you soon";
+        this.Key = "sdghfg";
+        this.read = false;
     }
 
     public Message(String from, String to, String subject, String msg,String k) {

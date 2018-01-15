@@ -180,5 +180,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.313" />
 
+    <fragment
+        android:id="@+id/fragment7"
+        android:name="com.tmd.library.MenuFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:layout="@layout/menu_fragment" />
+
 
 </android.support.constraint.ConstraintLayout>
