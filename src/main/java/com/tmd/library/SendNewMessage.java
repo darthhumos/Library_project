@@ -22,18 +22,25 @@ public class SendNewMessage extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference ref;
     private TextView tv;
-
-
+    private String id;
+    private Message ms;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_new_message);
+        Bundle bun = getIntent().getExtras();
+        if(bun!=null)
+        {
+            id = bun.get("ID").toString();
+            ms = (Message)bun.get("Message");
+
+        }
         Button btnSend = (Button) findViewById(R.id.SendNewMessage_btn_send);
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User user = MainActivity.getuser();
-                tv = (TextView) findViewById(R.id.SendNewMessage_label_user);
+                tv = (TextView) findViewById(R.id.SendNewMessage_label_to);
                 from = user.getName()+" "+user.getLast_Name();
                 tv.setText(from);
 
@@ -53,11 +60,22 @@ public class SendNewMessage extends AppCompatActivity {
                  //add
                  try {
                  ref = database.getInstance().getReference().child("Messages");
-                 String MessageId = ref.push().getKey();
-                     ref = ref.child(MessageId);
-                 Message newMessage = new Message(from, to ,subject , msg,MessageId);
 
-                     ref.setValue(newMessage);
+                 String MessageId = ref.push().getKey();
+                     if(id!=null)
+                     {
+                         MessageId = id;
+                         ref = ref.child(MessageId);
+                         ref = ref.child("answer");
+                         ref.setValue(msg);
+                         ref = database.getInstance().getReference().child("Messages").child(MessageId).child("read");
+                         ref.setValue(false);
+                     }
+                     else {
+                         ref = ref.child(MessageId);
+                         Message newMessage = new Message(from, to, subject, msg, MessageId);
+                         ref.setValue(newMessage);
+                     }
                      Toast.makeText(getApplicationContext(), "Message Sent!", Toast.LENGTH_SHORT).show();
                  }
                  catch(Exception ex)

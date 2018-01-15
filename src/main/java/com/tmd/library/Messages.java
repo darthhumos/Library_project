@@ -34,6 +34,7 @@ public class Messages extends AppCompatActivity {
     String myUserName;
     ListView list;
     private int index = 0;
+    private Message cur_msg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,7 @@ public class Messages extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String sub  = String.valueOf(adapterView.getItemAtPosition(i));
                 Message m = MessagesArray.get(sub);
+                cur_msg = m;
                 myRef = database.getReference("Messages");
                 myRef = myRef.child(m.getKey());
                 if(m.getTo().equals(myUserName))
@@ -92,7 +94,7 @@ public class Messages extends AppCompatActivity {
     private void AddMassage(DataSnapshot data) {
         if(adapter!=null) {
             index = 0;
-            MessagesArray.clear();
+            SubjectArray.clear();
             adapter.notifyDataSetChanged();
             ArrayList<String> temp = new ArrayList<>();
             for (DataSnapshot ds : data.getChildren())
@@ -101,6 +103,7 @@ public class Messages extends AppCompatActivity {
                 if(m.getFrom().equals(myUserName) || m.getTo().equals(myUserName)) {
                     m.setKey(ds.getKey());
                     temp.add(index+")"+m.getSubject());
+                    index++;
                 }
             }
             SubjectArray.addAll(temp);
@@ -143,7 +146,7 @@ public class Messages extends AppCompatActivity {
         try {
 
             String s = ("From: "+m.getFrom())+"\n"+"Message: "+msg+"\n"+"answer: "+ans;
-            final CharSequence[] options = {s,"Cancel"};
+            final CharSequence[] options = {s,"Respond","Cancel"};
             android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(Messages.this);
             builder.setTitle(sub);
             builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -151,6 +154,13 @@ public class Messages extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int item) {
                     if (options[item].equals("Cancel")) {
                         dialog.dismiss();
+                    }
+                    else if(options[item].equals("Respond"))
+                    {
+                        Intent i = new Intent(Messages.this,SendNewMessage.class);
+                        i.putExtra("ID",cur_msg.getKey());
+                        startActivity(i);
+
                     }
                 }
             });
