@@ -1,9 +1,11 @@
 package com.tmd.library;
 
+import org.junit.Test;
+
 import dalvik.annotation.TestTarget;
 
 import static junit.framework.Assert.assertSame;
-import static org.mockito.Mockito.*;
+import static org.mockito.*;
 
 /**
  * Created by Dovi Samuel on 14/01/2018.
