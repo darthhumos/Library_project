@@ -50,6 +50,9 @@ public class User {
         this.Phone = _Phone;
         this.Street = _Street;
         this.Email = _Email;
+        this.Books = new ArrayList<>();
+        Books.add(0,1);
+
     }
     public String getName() {
         return Name;

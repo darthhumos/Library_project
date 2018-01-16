@@ -120,6 +120,7 @@ public class Browse extends AppCompatActivity {
     }
 
     private void getBooks() {
+        //StopShip
         database = FirebaseDatabase.getInstance("https://library-b0594.firebaseio.com/");
         myRef = database.getReference("Books");
        // Toast.makeText(getApplicationContext(),"connecting to the server",Toast.LENGTH_SHORT).show();
@@ -137,7 +138,6 @@ public class Browse extends AppCompatActivity {
             }
         });
     }
-
     private void AddBooks(DataSnapshot data) {
         if(adapter!=null) {
             Books2.clear();
